@@ -13,8 +13,7 @@ void Grid::all(bool w){
    }
 }
 
-void Grid::bounceLed(int x1, int y1, int x2, int y2, int s){
-
+void Grid::heart(bool inverted){
 }
 
 
@@ -32,14 +31,13 @@ void Grid::border(bool inverted, int o){
     int b = 7-o;
       for(int x = 0; x< 8; x++){
       for(int y = 0; y< 8; y++){
-        if((x == a || y == b) || (x == b || y == a)) leds[x][y] = inverted;
-        else leds[x][y] = !inverted;
+        if((x == a || y == b) || (x == b || y == a)) leds[x][y] = !inverted;
+        else leds[x][y] = inverted;
     }
   }
 }
 
 void Grid::square(bool inverted, int s){
-  all(inverted);
   for(int x = 4-(s/2); x < 4+(s/2); x++){
     for(int y = 4-(s/2); y < 4+(s/2); y++){
     leds[x][y] = !inverted;
@@ -47,8 +45,8 @@ void Grid::square(bool inverted, int s){
   }
 }
 
-void Grid::randPoints(bool inverted, int n){
-  all(inverted);
+void Grid::randPoints(bool inverted, int n, int seed){
+  randomSeed(seed);
   int rx = random(0, 8);
   int ry = random(0, 8);
   for(int i = 0; i < n; i++){
